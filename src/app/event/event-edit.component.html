@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="saveEvent()"
+          [formGroup]="eventForm">
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="perilId">Peril</label>
+        <div class="col-md-8">
+          <div class="form-group">
+            <select class="form-control"
+                    id="perilId"
+                    formControlName="peril"
+                    [ngClass]="{'is-invalid': displayMessage.peril }" >
+              <option *ngFor="let order of peril; let i = index" [value]="peril[i].id">
+                {{peril[i].name}}
+              </option>
+            </select>
+            <span class="invalid-feedback">
+            {{displayMessage.peril}}
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="stateId">State</label>
+        <div class="col-md-8">
+          <select class="form-control"
+                  id="stateId"
+                  formControlName="state"
+                  [ngClass]="{'is-invalid': displayMessage.state }" >
+            <option *ngFor="let order of state; let i = index" [value]="state[i].id">
+              {{state[i].name}}
+            </option>
+          </select>
+          <span class="invalid-feedback">
+            {{displayMessage.state}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="lossId">Loss</label>
+
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="lossId"
+                 type="text"
+                 placeholder="0"
+                 formControlName="loss"
+                 [ngClass]="{'is-invalid': displayMessage.loss}" />
+          <span class="invalid-feedback">
+            {{displayMessage.loss}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  style="width:80px;"
+                  type="submit"
+                  [title]="eventForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!eventForm.valid">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px;"
+                  type="button"
+                  title="Cancel your edits"
+                  [routerLink]="['/events']">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="alert alert-danger"
+       *ngIf="errorMessage">{{errorMessage}}
+  </div>
+</div>
