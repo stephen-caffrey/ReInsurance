@@ -4,9 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
 import { EventListComponent } from '../event/event-list.component';
 import { DealListComponent } from './deal-list.component';
 
